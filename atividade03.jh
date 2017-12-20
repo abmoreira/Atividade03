@@ -1,0 +1,46 @@
+entity Atividade {
+	atividadeDisc String
+    atividadeProf String, 
+    atividadeNota Int,
+    atividadeEntrega Int,
+}
+
+entity Entrega {
+	entregaAtividade String, 
+    entregaAluno String, 
+}
+
+entity PeriodoLetivo {
+	periodoAula String, 
+    periodoFalta Int,
+}
+
+relationship OneToOne {
+	Usuario{} to Pessoa{}
+}
+
+relationship ManyToOne {
+	Aluno {} to Pessoa{}
+    Professor{} to Pessoa{}
+    Usuario{} to Permissao{}
+    Falta{} to PeriodoLetivo{}
+    Falta{} to Aula{}
+    Turma{} to Professor{}
+}
+
+relationship ManyToMany {
+	Professor{} to Disciplina{}
+}
+
+relationship OneToMany {
+	Disciplina{} to Atividade{}
+    Atividade{} to Entrega{}
+    Aluno{} to Entrega{}
+    Aluno{} to Falta{}
+    Nota{} to Aluno{}
+    Turma{} to Aluno{}
+    Turma{} to Professor{}
+    PeriodoLetivo{} to Aula{}
+}
+
+
